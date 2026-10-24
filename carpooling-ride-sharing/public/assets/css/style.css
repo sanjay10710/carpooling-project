@@ -1,0 +1,160 @@
+/* ==========================================================================
+   TransitPool — "Transit" (sky-blue/lime) visual identity
+   ==========================================================================
+   Palette:
+     --sky     #0EA5E9  brand primary (links, primary buttons, active nav)
+     --lime    #84CC16  brand accent (confirmed/booked states, CTAs)
+     --ink     #101828  dark surfaces (navbar, headings)
+     --canvas  #F7F9FB  page background
+     --line    #E1E7EE  hairline borders
+   Type: Space Grotesk (display/headings, geometric — transit-signage feel) /
+   Inter (body) / JetBrains Mono (times, plate numbers, fares — anything that
+   should read like a departure board, not prose).
+   Signature: a dashed "route line" motif (see .route-dashline / .route-strip)
+   under the navbar and along ride cards, plus a small pin-drop mark as the
+   brand icon — restrained, not a full illustrated hero.
+   ========================================================================== */
+
+* { box-sizing: border-box; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+.font-mono-tab { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+/* ---- route-map motif -------------------------------------------------- */
+.route-dashline {
+    height: 3px;
+    background-image: repeating-linear-gradient(90deg, #84CC16 0 14px, transparent 14px 24px);
+    opacity: 0.9;
+}
+.route-strip {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 600;
+}
+.route-strip .route-dot { width: 8px; height: 8px; border-radius: 50%; background: #0EA5E9; flex-shrink: 0; }
+.route-strip .route-dot.end { background: #84CC16; }
+.route-strip .route-line { flex: 1; min-width: 1.25rem; height: 0; border-top: 2px dashed #C9D3DE; }
+
+/* ---- nav ------------------------------------------------------------- */
+.nav-link { color: rgba(255,255,255,0.68); transition: background .15s, color .15s; }
+.nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.nav-link-active { color: #101828; background: #84CC16; font-weight: 700; }
+
+.btn-ghost-dark {
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+    padding: 0.4rem 0.9rem; font-weight: 600; font-size: 0.82rem;
+}
+.btn-ghost-dark:hover { background: rgba(255,255,255,0.16); color: #fff; }
+
+/* ---- cards ------------------------------------------------------------- */
+.card {
+    background: #fff; border: 1px solid var(--line, #E1E7EE);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.card-head h2 { font-size: 1.05rem; font-weight: 700; }
+
+.stat-tile {
+    background: #fff; border: 1px solid #E1E7EE; border-radius: 10px;
+    padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.15rem;
+    border-top: 3px solid #0EA5E9;
+}
+.stat-tile .stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: #101828; }
+.stat-tile .stat-label { font-size: 0.76rem; color: #5B6472; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+.stat-tile-accent { border-top-color: #84CC16; }
+.stat-tile-accent .stat-value { color: #4D7C0F; }
+.stat-tile-alert { border-top-color: #D93A4E; }
+.stat-tile-alert .stat-value { color: #D93A4E; }
+
+/* ---- buttons ------------------------------------------------------------ */
+.btn-primary {
+    background: #0EA5E9; color: #fff; border-radius: 8px;
+    padding: 0.55rem 1.15rem; font-weight: 600; font-size: 0.88rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    border: none; cursor: pointer;
+}
+.btn-primary:hover { background: #0284C7; }
+.btn-accent {
+    background: #84CC16; color: #14210A; border-radius: 8px;
+    padding: 0.55rem 1.15rem; font-weight: 700; font-size: 0.88rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    border: none; cursor: pointer;
+}
+.btn-accent:hover { background: #73B012; }
+.btn-secondary {
+    background: #fff; color: #101828; border: 1px solid #E1E7EE; border-radius: 8px;
+    padding: 0.55rem 1.15rem; font-weight: 600; font-size: 0.88rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem; cursor: pointer;
+}
+.btn-secondary:hover { border-color: #0EA5E9; color: #0369A1; }
+.btn-danger {
+    background: #D93A4E; color: #fff; border-radius: 8px; border: none; cursor: pointer;
+    padding: 0.5rem 1rem; font-weight: 600; font-size: 0.82rem;
+}
+.btn-danger:hover { background: #C22B3E; }
+.btn-sm { padding: 0.32rem 0.7rem; font-size: 0.78rem; }
+.btn-primary:disabled, .btn-accent:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---- forms ---------------------------------------------------------------*/
+.field-label { display:block; font-size: 0.8rem; font-weight: 600; color: #101828; margin-bottom: 0.3rem; }
+.field-input, .field-textarea, .field-select {
+    width: 100%; border: 1px solid #E1E7EE; border-radius: 8px;
+    padding: 0.55rem 0.75rem; font-size: 0.9rem; background: #fff; color: #101828;
+    font-family: 'Inter', sans-serif;
+}
+.field-input:focus, .field-textarea:focus, .field-select:focus { outline: 2px solid #0EA5E9; outline-offset: 1px; border-color: #0EA5E9; }
+.field-error { color: #D93A4E; font-size: 0.78rem; margin-top: 0.25rem; }
+.field-hint { color: #5B6472; font-size: 0.76rem; margin-top: 0.25rem; }
+
+/* ---- badges/pills --------------------------------------------------------*/
+.badge { display:inline-flex; align-items:center; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.01em; }
+.badge-sky   { background: #E6F6FE; color: #0369A1; }
+.badge-lime  { background: #F2FCE3; color: #4D7C0F; }
+.badge-amber { background: #FBF1DD; color: #B9791A; }
+.badge-rose  { background: #FBE7EB; color: #D93A4E; }
+.badge-slate { background: #EEF1F4; color: #5B6472; }
+
+/* ---- ride cards --------------------------------------------------------*/
+.ride-card {
+    background: #fff; border: 1px solid #E1E7EE; border-radius: 12px; padding: 1.1rem 1.25rem;
+    transition: box-shadow .15s, border-color .15s;
+}
+.ride-card:hover { box-shadow: 0 10px 22px -16px rgba(16,24,40,0.25); border-color: #BAE6FD; }
+
+/* ---- empty state ----------------------------------------------------------*/
+.empty-state { color: #5B6472; font-size: 0.9rem; padding: 1rem 0; text-align: center; }
+
+/* ---- table ------------------------------------------------------------- */
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.data-table th { text-align: left; padding: 0.6rem 0.7rem; color: #5B6472; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid #E1E7EE; }
+.data-table td { padding: 0.65rem 0.7rem; border-bottom: 1px solid #EEF1F4; vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #F7FBFE; }
+
+/* ---- alerts ---------------------------------------------------------------*/
+.alert { padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+.alert-error { background: #FBE7EB; color: #D93A4E; border: 1px solid rgba(217,58,78,0.25); }
+.alert-success { background: #F2FCE3; color: #4D7C0F; border: 1px solid rgba(77,124,15,0.25); }
+
+/* ---- stars --------------------------------------------------------------*/
+.star-rating { color: #B9791A; letter-spacing: 0.05em; }
+
+/* ---- auth hero (login/register) -------------------------------------- */
+.auth-hero {
+    background:
+        repeating-linear-gradient(120deg, transparent 0 26px, rgba(255,255,255,0.06) 26px 28px),
+        linear-gradient(160deg, #0B4A6F 0%, #101828 65%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ---- error pages ----------------------------------------------------------*/
+.error-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #F7F9FB; }
+.error-card { text-align: center; background: #fff; border: 1px solid #E1E7EE; border-radius: 16px; padding: 3rem 2.5rem; max-width: 420px; }
+.error-card h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: #0EA5E9; }
